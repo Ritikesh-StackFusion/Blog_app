@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 def index
   posts = if params[:category].present?
             Post.where("category ILIKE ?", "%#{params[:category]}%")
-          else
+  else
             Post.all
-          end
+  end
 
   @posts = posts.order(created_at: :asc).page(params[:page]).per(6)
 
@@ -76,9 +76,8 @@ end
     def post_params
       params.require(:post).permit(:title, :content, :author, :category, :image, :tags).tap do |whitelisted|
         if params[:post][:tags].present?
-          whitelisted[:tags] = params[:post][:tags].split(',').map(&:strip)
+          whitelisted[:tags] = params[:post][:tags].split(",").map(&:strip)
         end
       end
     end
-
 end

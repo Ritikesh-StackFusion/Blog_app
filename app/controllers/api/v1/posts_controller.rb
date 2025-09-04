@@ -2,14 +2,14 @@
 module Api
   module V1
     class PostsController < ApplicationController
-      before_action :set_post, only: [:show, :update, :destroy]
+      before_action :set_post, only: [ :show, :update, :destroy ]
 
       def index
         posts = if params[:category].present?
                   Post.where("category ILIKE ?", "%#{params[:category]}%")
-                else
+        else
                   Post.all
-                end
+        end
 
         posts = posts.order(created_at: :asc).page(params[:page]).per(6)
         render json: posts.map { |post| post_json(post) }, status: :ok

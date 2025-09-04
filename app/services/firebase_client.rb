@@ -1,10 +1,10 @@
-require 'httparty'
+require "httparty"
 
 class FirebaseClient
   include HTTParty
 
   def initialize(database_url, database_secret = nil)
-    @base_uri = database_url.chomp('/')
+    @base_uri = database_url.chomp("/")
     @auth = database_secret ? "?auth=#{database_secret}" : ""
   end
 

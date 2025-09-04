@@ -15,7 +15,7 @@ Rails.application.configure do
   # Enable server timing.
   config.server_timing = true
   config.hosts << /[a-z0-9\-]+\.ngrok\-free\.app/
-  
+
   # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
   # Run rails dev:cache to toggle Action Controller caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
@@ -70,16 +70,15 @@ Rails.application.configure do
 
 
     ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => 'gmail.com',
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
     # :domain => '192.168.1.10:4000',
     # :user_name => "roneysmith34@gmail.com",
     # :password => "roney123",
-    :user_name => 'scribzfirst@gmail.com',
-    :password => 'zkgn xgva hsfw kwzq',
-    :authentication => 'plain',
-    :enable_starttls_auto => true
+    user_name: "scribzfirst@gmail.com",
+    password: "zkgn xgva hsfw kwzq",
+    authentication: "plain",
+    enable_starttls_auto: true
   }
-
 end
