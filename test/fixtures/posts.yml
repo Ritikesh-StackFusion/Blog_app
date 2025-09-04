@@ -12,4 +12,4 @@ two:
   content: MyText
   author: MyString
   category: MyString
-  tags: MyString
+  tags: ['MyString']
