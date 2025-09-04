@@ -1,0 +1,23 @@
+
+<div id="<%= dom_id post %>" class="post-card">
+  <% if post.image.present? %>
+    <div class="post-image-container">
+      <%= image_tag(post.image, alt: post.title, class: "post-image") %>
+    </div>
+  <% end %>
+
+  <div class="post-content">
+    <!-- Category badge above the title -->
+    <div class="category-badge inline"><%= post.category %></div>
+
+
+    <h2 class="post-title"><%= post.title %></h2>
+    <!-- <p class="post-author"><strong>Author:</strong> <%#= post.author %></p> -->
+    <p class="post-excerpt"><%= truncate(post.content, length: 100) %></p>
+     <!-- <p class="post-category"><strong>Category:</strong> <%#= post.category %></p> -->
+
+    <!-- <p class="post-tags"><strong>Tags:</strong> <%#= post.tags %></p> -->
+
+    <%= link_to "Learn more", post, class: "learn-more-link" %>
+  </div>
+</div>

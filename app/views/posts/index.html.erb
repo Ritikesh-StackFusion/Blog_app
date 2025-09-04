@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Posts" %>
+
+<p>Posts <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %> <%= link_to "New post", new_post_path %>
+</p>
+
+<div style="max-width: 600px; margin: 20px auto; position: relative;">
+  <%= form_with url: posts_path, method: :get, local: true do %>
+    <input
+      type="search"
+      name="category"
+      placeholder="Browse Blogs by Category"
+      style="width: 100%; padding: 12px 50px 12px 20px; border-radius: 25px; border: 1px solid #f5e6f1; background-color: #fff0f7; font-size: 1rem; outline: none; color: #555;"
+      value="<%= params[:category] %>"
+    />
+
+    <button
+      type="submit"
+      style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background-color: #d81e78; border: none; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+      aria-label="Search"
+    >
+     <i class="bi bi-search" style="font-size: 20px; color: white;"></i>
+    </button>
+  <% end %>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
+  <% @categories.each do |category| %>
+    <%= link_to category, posts_path(category: category), 
+      style: "padding: 8px 20px; border-radius: 20px; border: 1px solid #ddd; text-decoration: none; font-weight: 600; color: #{params[:category] == category ? 'white' : '#333'}; background: #{params[:category] == category ? 'linear-gradient(90deg, #6a11cb, #2575fc)' : 'transparent'};" %>
+  <% end %>
+
+  <%= link_to "All Categories", posts_path, 
+    style: "padding: 8px 20px; border-radius: 20px; border: 1px solid #ddd; text-decoration: none; font-weight: 600; color: #{params[:category].blank? ? 'white' : '#333'}; background: #{params[:category].blank? ? 'linear-gradient(90deg, #6a11cb, #2575fc)' : 'transparent'};" %>
+</div>
+
+
+
+<div id="posts" style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>
+
+<%= paginate @posts %>

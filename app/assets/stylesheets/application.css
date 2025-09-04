@@ -1,0 +1,127 @@
+.post-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 350px;
+  margin: 15px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.post-image-container {
+  width: 100%;
+}
+
+.post-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.post-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-badge.inline {
+  display: inline-block;
+  background-color: #e0f7fa; /* light blue */
+  color: #01579b;             /* darker blue text */
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  width: fit-content;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.post-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-excerpt {
+  flex-grow: 1;
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.learn-more-link {
+  color: #d6336c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.learn-more-link:hover {
+  text-decoration: underline;
+}
+
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+  user-select: none;
+  padding: 10px;
+}
+
+.pagination a,
+.pagination span {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.pagination a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Current active page style */
+.pagination .current {
+  background-color: #3a5ca8;
+  color: white;
+  font-weight: bold;
+  cursor: default;
+}
+
+/* Disabled or gap styles */
+.pagination .gap {
+  color: #999;
+  cursor: default;
+  padding: 6px 8px;
+  user-select: none;
+}
+
+
+.category-filters .btn {
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.category-filters .btn.active {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  border-color: transparent;
+}

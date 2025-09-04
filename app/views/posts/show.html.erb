@@ -1,0 +1,130 @@
+<div class="container" style="max-width: 1000px; margin: auto; padding: 20px; font-family: Arial, sans-serif; color: #222;">
+
+<!-- Top section with banner image and sidebar -->
+<div style="display: flex; gap: 20px;">
+
+<!-- Left: Banner Image with fixed height -->
+<div style="flex: 2; position: relative; border-radius: 10px; overflow: hidden; height: 450px;">
+  <% if @post.image.attached? %>
+    <%= image_tag @post.image, alt: @post.title, style: "width: 100%; height: 100%; object-fit: cover;" %>
+  <% else %>
+    <div style="background: #ddd; height: 100%; display: flex; align-items: center; justify-content: center;">
+      No Image Available
+    </div>
+  <% end %>
+
+  <!-- Logo overlay top-left -->
+  <div style="position: absolute; top: 15px; left: 15px; background-color: #8a2be2; color: white; padding: 6px 12px; font-weight: bold; border-radius: 4px; font-size: 0.9rem;">
+    <%= @post.author %>
+  </div>
+
+  <!-- Caption overlay bottom-left -->
+  <div style="position: absolute; bottom: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 10px 16px; border-radius: 6px; font-weight: 600; font-size: 1.2rem; max-width: 80%;">
+    <%= @post.title %>
+  </div>
+</div>
+
+<!-- Right: Latest 4 posts sidebar with fixed height -->
+<div style="flex: 1; border: 1px solid #ddd; border-radius: 10px; padding: 15px; height: 450px; overflow-y: auto;">
+  <h3 style="font-weight: 600; margin-bottom: 20px;">Latest Posts</h3>
+
+  <% @latest_posts.limit(4).each do |post| %>
+    <div style="display: flex; margin-bottom: 20px; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+      <div style="flex-shrink: 0;">
+        <% if post.image.attached? %>
+          <%= link_to image_tag(post.image.variant(resize_to_fill: [60, 60]), alt: post.title, style: "border-radius: 6px;"), post_path(post) %>
+        <% else %>
+          <%= link_to post_path(post) do %>
+            <div style="width: 60px; height: 60px; background: #ccc; border-radius: 6px;"></div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div style="flex-grow: 1;">
+        <div style="background-color: #8a2be2; color: white; font-size: 0.7rem; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 6px;">
+          <%= post.category %>
+        </div>
+
+        <div style="font-weight: 600; font-size: 1rem; line-height: 1.2;">
+          <%= link_to post.title, post_path(post), style: "color: #333; text-decoration: none;" %>
+        </div>
+
+        <div style="font-size: 0.75rem; color: #888;">
+          <%= post.created_at.strftime("%-m/%-d/%Y") %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+
+
+  <!-- Main article content below -->
+  <div style="margin-top: 40px;">
+    <div style="margin-bottom: 15px;">
+      <span style="background-color: #8a2be2; color: white; padding: 7px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">
+        <%= @post.category %>
+      </span>
+    </div>
+
+    <h1 style="font-size: 2.8rem; font-weight: 700; margin-bottom: 10px;">
+      <%= @post.title %>
+    </h1>
+
+    <div style="color: #666; font-size: 0.9rem; margin-bottom: 30px;">
+      By <%= @post.author %>
+    </div>
+
+    <div style="line-height: 1.8; font-size: 1.1rem;">
+      <%= simple_format(@post.content) %>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="container" style="max-width: 1000px; margin: auto; padding: 20px; font-family: Arial, sans-serif; color: #222;">
+
+<h4>Recommended Blogs</h4>
+
+<div style="display: flex; gap: 20px;">
+
+  <% @latest_posts.limit(3).each do |post| %>
+    <div style="flex: 1; border: 1px solid #ddd; border-radius: 10px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden;">
+
+      <% if post.image.attached? %>
+        <%= link_to post_path(post) do %>
+          <%= image_tag(post.image.variant(resize_to_fill: [320, 180]), alt: post.title, style: "width: 100%; height: 180px; object-fit: cover;") %>
+        <% end %>
+      <% else %>
+        <%= link_to post_path(post) do %>
+          <div style="width: 100%; height: 180px; background: #ccc;"></div>
+        <% end %>
+      <% end %>
+
+      <div style="padding: 10px 15px;">
+        <div style="background-color: #cce7f9; color: #007acc; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 15px; display: inline-block; margin-bottom: 8px;">
+          <%= post.category %>
+        </div>
+
+        <h4 style="font-weight: 600; font-size: 1.1rem; margin: 6px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          <%= link_to post.title, post_path(post), style: "color: #222; text-decoration: none;" %>
+        </h4>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #888;">
+          <a href="<%= post_path(post) %>" style="color: #c63cff; font-weight: 600; text-decoration: none;">
+            Learn more →
+          </a>
+          <span>
+            <%= post.created_at.strftime("%-m/%-d/%Y") %>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>
+</div>
