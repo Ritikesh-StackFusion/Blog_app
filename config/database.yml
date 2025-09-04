@@ -85,8 +85,6 @@ production:
   primary: &primary_production
     <<: *default
     database: blog_production
-    username: ritikesh
-    password: Ritikesh@123
   cache:
     <<: *primary_production
     database: blog_production_cache
