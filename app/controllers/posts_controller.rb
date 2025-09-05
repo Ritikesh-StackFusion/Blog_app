@@ -31,9 +31,14 @@ end
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
+    
     if params[:post][:image].present?
-      @post.image.attach(params[:post][:image].merge(identify: false)) # 👈 Disable analysis
+      @post.image.attach(
+        io: params[:post][:image],
+        filename: params[:post][:image].original_filename,
+        content_type: params[:post][:image].content_type,
+        identify: false # 👈 disables metadata analysis
+      )
     end
 
     respond_to do |format|
