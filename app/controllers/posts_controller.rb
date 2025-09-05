@@ -32,6 +32,10 @@ end
   def create
     @post = Post.new(post_params)
 
+    if params[:post][:image].present?
+      @post.image.attach(params[:post][:image].merge(identify: false)) # 👈 Disable analysis
+    end
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "Post was successfully created." }

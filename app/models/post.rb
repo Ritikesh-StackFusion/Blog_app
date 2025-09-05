@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_one_attached :image, analyze: false
+  has_one_attached :image
 
   # after_commit :sync_to_firebase, on: [ :create, :update ]
   # after_destroy :remove_from_firebase
