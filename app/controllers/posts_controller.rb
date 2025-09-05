@@ -69,15 +69,15 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params.expect(:id))
+      @post = Post.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content, :author, :category, :image, :tags).tap do |whitelisted|
-        if params[:post][:tags].present?
-          whitelisted[:tags] = params[:post][:tags].split(",").map(&:strip)
-        end
+      permitted = params.require(:post).permit(:title, :content, :author, :category, :image)
+      if params[:post][:tags].present?
+        permitted[:tags] = params[:post][:tags].split(',').map(&:strip)
       end
+      permitted
     end
 end
