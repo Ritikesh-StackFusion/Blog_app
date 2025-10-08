@@ -72,6 +72,6 @@ gem "kaminari-bootstrap", "~> 3.0"
 
 gem "pagy", "~> 9.4"
 
-gem "httparty", "~> 0.23.1"
+gem "httparty", "~> 0.23.2"
 
 gem "dotenv-rails", "~> 3.1"
